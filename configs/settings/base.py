@@ -26,6 +26,13 @@ SECRET_KEY = 'django-insecure-5l-8dl_oj46*hp6p6)&#qllcm_*(_mm67#i&pv3!8b^&4+5^eo
 # Application definition
 
 INSTALLED_APPS = [
+
+    # custom apps
+    'apps.core',
+    'apps.lazer_area',
+    'apps.payment',
+    'apps.reserve',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
