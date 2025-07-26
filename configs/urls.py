@@ -15,16 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Seo Tools",
+      title="Clinic Reservation System",
       default_version='v1',
-      description="api docs for Seo Tools",
+      description="api docs for Clinic Reservation System",
    ),
    public=True,
    permission_classes=[permissions.AllowAny],
@@ -39,5 +39,11 @@ urlpatterns = [
     path('api-docs/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger.yaml', schema_view.without_ui(cache_timeout=0), name='schema-yaml'),
+
+    # api version 1
+    path('api/v1/core/', include('apps.core.api.v1.routers')),
+    path('api/v1/core/', include('apps.lazer_area.api.v1.routers')),
+    path('api/v1/core/', include('apps.payment.api.v1.routers')),
+    path('api/v1/core/', include('apps.reserve.api.v1.routers')),
 
 ]
