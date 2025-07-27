@@ -3,8 +3,9 @@ from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 import logging
+
+from apps.core.models import CustomUser
 from apps.reserve.models.program import OperatorShift, CancellationPeriod, DayPeriod
-from django.conf import settings
 
 # Configure logging for better debugging and monitoring
 logger = logging.getLogger(__name__)
@@ -14,7 +15,7 @@ class OperatorShiftSerializer(serializers.ModelSerializer):
     Serializer for the OperatorShift model, handling operator shift assignments.
     """
     operator_id = serializers.PrimaryKeyRelatedField(
-        queryset=settings.AUTH_USER_MODEL.objects.all(),
+        queryset=CustomUser.objects.all(),
         source='operator',
         write_only=True,
         required=True,

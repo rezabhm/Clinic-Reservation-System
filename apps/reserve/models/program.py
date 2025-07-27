@@ -96,6 +96,19 @@ class OperatorShift(BaseModel):
             logger.error(f"Error retrieving shifts for date {shift_date}: {str(e)}")
             return []
 
+    @classmethod
+    def get_active_shifts(cls, user) -> List['OperatorShift']:
+        """
+        Retrieve all active (today or future) shifts for a given operator (user).
+        """
+        try:
+            today = timezone.localdate()
+            return list(cls.objects.filter(operator=user, shift_date__gte=today))
+        except Exception as e:
+            logger.error(f"Error retrieving active shifts for operator {user}: {str(e)}")
+            return []
+
+
 class CancellationPeriod(BaseModel):
     """
     Model to store time periods when reservations are cancelled by admin.

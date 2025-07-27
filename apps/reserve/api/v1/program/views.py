@@ -125,4 +125,4 @@ class CancellationPeriodUserAPIView(
 
     def get_queryset(self):
         """Restrict queryset to active cancellation periods."""
-        return CancellationPeriod.objects.filter(is_active=True)
+        return CancellationPeriod.objects.filter()

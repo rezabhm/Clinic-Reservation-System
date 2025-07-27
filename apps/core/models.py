@@ -41,7 +41,7 @@ class UserRole(models.TextChoices):
     STAFF = 'STAFF', _('Staff')
 
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser, BaseModel):
     """
     Custom user model extending AbstractUser with role-based access control.
     """

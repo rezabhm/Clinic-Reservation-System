@@ -6,7 +6,9 @@ from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 import logging
 from .models import Payment, DiscountCode, PaymentStatus, PaymentType
-from django.conf import settings
+
+from apps.core.models import CustomUser
+from apps.reserve.models.reserve import Reservation
 
 # Configure logging for better debugging and monitoring
 logger = logging.getLogger(__name__)
@@ -16,14 +18,14 @@ class PaymentSerializer(serializers.ModelSerializer):
     Serializer for the Payment model, handling payment transaction data.
     """
     user_id = serializers.PrimaryKeyRelatedField(
-        queryset=settings.AUTH_USER_MODEL.objects.all(),
+        queryset=CustomUser.objects.all(),
         source='user',
         write_only=True,
         required=True,
         help_text=_("ID of the associated user")
     )
     reservation_id = serializers.PrimaryKeyRelatedField(
-        queryset='Reserve.Reservation'.objects.all(),
+        queryset=Reservation.objects.all(),
         source='reservation',
         write_only=True,
         required=True,

@@ -47,7 +47,7 @@ class Payment(BaseModel):
         help_text=_("User who initiated the payment")
     )
     reservation = models.ForeignKey(
-        'Reserve.Reserve',
+        'reserve.Reservation',
         on_delete=models.PROTECT,
         related_name='payments',
         verbose_name=_("Reservation"),

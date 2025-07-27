@@ -1,12 +1,15 @@
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
-from rest_framework import mixins, filters, status
+from rest_framework import mixins, filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from apps.core.models import UserRole
 from apps.payment.models import Payment, DiscountCode
 from apps.payment.serializers import PaymentSerializer, DiscountCodeSerializer
 from apps.payment.api.v1.swagger_decorator import (

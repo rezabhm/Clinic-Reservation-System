@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-from django.utils import timezone
 import logging
 from uuid import uuid4
 from typing import List
@@ -9,6 +8,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 
 from apps.core.models import BaseModel
+from apps.lazer_area.models import LaserAreaSchedule, LaserArea
 
 # Configure logging for better debugging and monitoring
 logger = logging.getLogger(__name__)
@@ -133,7 +133,7 @@ class Reservation(BaseModel):
         help_text=_("Associated reservation schedule")
     )
     laser_area = models.ForeignKey(
-        'LazerApp.LaserArea',
+        LaserArea,
         on_delete=models.PROTECT,
         related_name='reservations',
         null=True,
@@ -141,7 +141,7 @@ class Reservation(BaseModel):
         help_text=_("Primary laser treatment area")
     )
     laser_area_schedules = models.ManyToManyField(
-        'LazerApp.LaserAreaSchedule',
+        LaserAreaSchedule,
         related_name='reservations',
         verbose_name=_("Laser Area Schedules"),
         help_text=_("Scheduled laser areas for this reservation")
@@ -192,7 +192,7 @@ class Reservation(BaseModel):
         help_text=_("Final amount after discounts")
     )
     discount_code = models.ForeignKey(
-        'DiscountCode',
+        'payment.DiscountCode',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -263,7 +263,7 @@ class PreReservation(BaseModel):
         help_text=_("User associated with this pre-reservation")
     )
     laser_area_schedule = models.ForeignKey(
-        'LazerApp.LaserAreaSchedule',
+        LaserAreaSchedule,
         on_delete=models.PROTECT,
         related_name='pre_reservations',
         verbose_name=_("Laser Area Schedule"),

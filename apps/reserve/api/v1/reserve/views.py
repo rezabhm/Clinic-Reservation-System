@@ -195,7 +195,7 @@ class OperatorReservationAPIView(
         instance = self.get_object()
         if instance.schedule.operator != request.user:
             raise PermissionDenied(_('You can only mark your assigned reservations as completed.'))
-        instance.is_resolved = True
+        instance.is_charged = True
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)

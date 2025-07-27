@@ -1,6 +1,6 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from .serializers import PaymentSerializer, DiscountCodeSerializer
+from apps.payment.serializers import PaymentSerializer, DiscountCodeSerializer
 
 # PaymentAdminAPI methods Decorators
 admin_create_payment_swagger = swagger_auto_schema(

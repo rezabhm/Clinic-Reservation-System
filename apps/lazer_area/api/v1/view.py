@@ -40,7 +40,7 @@ class LaserAreaAdminAPIView(
     Admin-only API ViewSet for managing LaserArea records.
     """
     authentication_classes = [JWTAuthentication]
-    permission_classes=['IsAdminUser']
+    permission_classes=[IsAdminUser]
     serializer_class = LaserAreaSerializer
     lookup_field = 'name'
     queryset = LaserArea.objects.all()

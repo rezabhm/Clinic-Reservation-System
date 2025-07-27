@@ -3,9 +3,11 @@ from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 import logging
+
+from apps.core.models import CustomUser
+from apps.payment.models import DiscountCode
 from apps.reserve.models.reserve import (ReservationSchedule, Reservation, PreReservation, TimeSlot, DayPeriod,
                                          ReservationType)
-from django.conf import settings
 from apps.lazer_area.models import LaserArea, LaserAreaSchedule
 
 # Configure logging for better debugging and monitoring
@@ -16,7 +18,7 @@ class ReservationScheduleSerializer(serializers.ModelSerializer):
     Serializer for the ReservationSchedule model, handling reservation scheduling data.
     """
     operator_id = serializers.PrimaryKeyRelatedField(
-        queryset=settings.AUTH_USER_MODEL.objects.all(),
+        queryset=CustomUser.objects.all(),
         source='operator',
         write_only=True,
         required=True,
@@ -106,7 +108,7 @@ class ReservationSerializer(serializers.ModelSerializer):
     Serializer for the Reservation model, handling reservation data.
     """
     user_id = serializers.PrimaryKeyRelatedField(
-        queryset=settings.AUTH_USER_MODEL.objects.all(),
+        queryset=CustomUser.objects.all(),
         source='user',
         write_only=True,
         required=True,
@@ -135,7 +137,7 @@ class ReservationSerializer(serializers.ModelSerializer):
         help_text=_("IDs of the associated laser area schedules")
     )
     discount_code_id = serializers.PrimaryKeyRelatedField(
-        queryset='Payment.DiscountCode'.objects.all(),
+        queryset=DiscountCode.objects.all(),
         source='discount_code',
         write_only=True,
         required=False,
@@ -252,7 +254,7 @@ class PreReservationSerializer(serializers.ModelSerializer):
     Serializer for the PreReservation model, handling pre-reservation data.
     """
     user_id = serializers.PrimaryKeyRelatedField(
-        queryset=settings.AUTH_USER_MODEL.objects.all(),
+        queryset=CustomUser.objects.all(),
         source='user',
         write_only=True,
         required=True,
