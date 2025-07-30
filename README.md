@@ -1,7 +1,7 @@
 markdown
 <!-- Project Banner Image -->
 <p align="center">
-  <img src="https://dribbble.com/shots/24421440-Healthcare-Medical-Illustrations?utm_source=Clipboard_Shot&utm_campaign=visualtap&utm_content=Healthcare%20%26%20Medical%20Illustrations%20%F0%9F%8C%A1%EF%B8%8F&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=visualtap&utm_content=Healthcare%20%26%20Medical%20Illustrations%20%F0%9F%8C%A1%EF%B8%8F&utm_medium=Social_Share" alt="Clinic Reservation System" width="800" />
+  <img src="./medical_banner.webp" alt="Clinic Reservation System" width="800" />
 </p>
 
 # Clinic Reservation System 🏥📅
