@@ -45,5 +45,5 @@ urlpatterns = [
     path('api/v1/core/', include('apps.lazer_area.api.v1.routers')),
     path('api/v1/core/', include('apps.payment.api.v1.routers')),
     path('api/v1/core/', include('apps.reserve.api.v1.routers')),
-
+    path('api/v1/accounts/', include('api.v1.routers')),
 ]
