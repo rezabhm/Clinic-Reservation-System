@@ -1,4 +1,4 @@
-markdown
+
 <!-- Project Banner Image -->
 <p align="center">
   <img src="./medical_banner.webp" alt="Clinic Reservation System" width="800" />
